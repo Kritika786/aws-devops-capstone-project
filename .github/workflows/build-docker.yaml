@@ -28,7 +28,7 @@ jobs:
 
     - name: Build the hello-world Docker image
       run: |
-        echo $CR_PAT | docker login ghcr.io -u Kritika786 --password-stdin
+        echo $SC | docker login ghcr.io -u Kritika786 --password-stdin
       env:
         SC: ${{ secrets.SC }}
     - name: Push image
