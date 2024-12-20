@@ -35,7 +35,7 @@ jobs:
         SC: ${{ secrets.SC }}
     - name: Push image
       run: |
-        docker build . --tag ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
+        docker build ./api/ --tag ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
         docker run ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
         docker push ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
 
