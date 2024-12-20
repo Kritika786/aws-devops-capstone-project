@@ -29,7 +29,8 @@ jobs:
     - name: Build the hello-world Docker image
       run: |
         #echo $SC | docker login ghcr.io -u Kritika786 --password-stdin
-        echo $SC | docker login -u Kritika786 --password-stdin
+        #echo $SC | docker login -u Kritika786 --password-stdin
+         echo ${{ secrets.SC }} | docker login -u ${{ github.repository_owner }} --password-stdin ghcr.io
       env:
         SC: ${{ secrets.SC }}
     - name: Push image
