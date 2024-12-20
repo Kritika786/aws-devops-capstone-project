@@ -10,15 +10,34 @@ on:
 jobs:
   publish_images:
     runs-on: ubuntu-latest
+    # steps:
+    #   - name: checkout
+    #     uses: actions/checkout@v4
+    #   - name: build image
+    #     run: |
+    #       docker build ./api/ -t rishabkumar7/devops-qr-code-backend:latest
+    #       docker build ./front-end-nextjs/ -t rishabkumar7/devops-qr-code-frontend:latest
+    #   - name: push image to docker hub
+    #     run: |
+    #       docker login -u rishabkumar7 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+    #       docker push rishabkumar7/devops-qr-code-backend:latest
+    #       docker push rishabkumar7/devops-qr-code-frontend:latest
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: build image
-        run: |
-          docker build ./api/ -t rishabkumar7/devops-qr-code-backend:latest
-          docker build ./front-end-nextjs/ -t rishabkumar7/devops-qr-code-frontend:latest
-      - name: push image to docker hub
-        run: |
-          docker login -u rishabkumar7 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push rishabkumar7/devops-qr-code-backend:latest
-          docker push rishabkumar7/devops-qr-code-frontend:latest
+    - uses: actions/checkout@v2
+
+    - name: Build the hello-world Docker image
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u Kritika786 --password-stdin
+      env:
+        SC: ${{ secrets.SC }}
+    - name: Push image
+      run: |
+        docker build . --tag ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
+        docker run ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
+        docker push ghcr.io/kritika786/aws-devops-capstone-project/backend/backend:latest
+
+
+
+
+        
